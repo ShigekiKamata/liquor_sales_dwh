@@ -12,11 +12,19 @@ stores them in Amazon S3, transforms the data, and loads the data to an Amazon R
 ## Datasets to Combine
 
 - [Iowa Liquor Sales](https://www.kaggle.com/residentmario/iowa-liquor-sales)
-- [US Weather Events](https://www.kaggle.com/sobhanmoosavi/us-weather-events)
-- [US Census Demographic Data](https://www.kaggle.com/muonneutrino/us-census-demographic-data)
-- [United States crime rates by county](https://www.kaggle.com/mikejohnsonjr/united-states-crime-rates-by-county)
+contains over 12 million records of liquor sales in Iowa from 2012 through 2017 
+- [Daily Temperature of Major Cities](https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities)
+contains temperature data of major cities in the world, which includes two major cities in Iowa; Des Moines and Sioux City 
+- [US Census Demographic Data](https://www.kaggle.com/muonneutrino/us-census-demographic-data) contains census data such as total population,
+population percentage by sex, race, and age, unemployment rate etc.
+- [United States crime rates by county](https://www.kaggle.com/mikejohnsonjr/united-states-crime-rates-by-county) contain data regarding crimes by US county. We will use crime rate per 1000,000 data. 
 
-## Installation
+## Technical Overview
+This project uses the following technologies.
+- Python
+- Apache Airflow
+- AWS Redshift
+- AWS S3
 
 ## Usage
 This project can be executed on either Apache Airflow or Python script basis, 
@@ -33,12 +41,12 @@ in your Amazon S3 bucket.
 5. Update the Airflow database by `$ airflow initdb`
 6. Run a DAG (Directed Acyclic Graph) named `etl_process` on the Airflow web UI
    
--Alternatively, if you want to run the process on script basis, replace the step 4 through 6 with
+- Alternatively, if you want to run the process on script basis, replace the step 4 through 6 with
 the following: 
 
 4. `python create_tables.py` will create the staging and final tables in the Redshift cluster 
 5. `python etl.py`  will stage the data in the Redshift cluster and insert rows to the final tables.  
-6.`python check_tables.py` will checks the copy and insert were done properly with sinple queries.
+6. `python check_tables.py` will checks the copy and insert were done properly with sinple queries.
 
 ## Airflow
 The Airflow DAG is as follows. Basically, it loads data to the staging tables from 
@@ -138,4 +146,12 @@ our project won't be significantly affected by data size.
 We may need to increase the number of nodes on Redshift, which can be easily done on the AWS dashboard. 
 Another thing is to consider is that we may need to be able to upload the dataset to 
 the Amazon S3 bucket directly from the source.   
+
+#### The data populates a dashboard that must be updated on a daily basis by 7am every day
+Apace Airflow can handle this kind of scheduled execution well. We need set `start_date` and
+`schedule_interval` parameters in the dag definition properly.  
+
+#### The database needed to be accessed by 100+ people
+Amazon Redshift can handle 500 connections so 100+ shouldn't be a problem. However, since you are charged
+by the amount of data you scaned, we need to pay closer attention to the usage cost.
 
