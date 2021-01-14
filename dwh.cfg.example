@@ -1,0 +1,24 @@
+[CLUSTER]
+host = 
+db_name = 
+db_user = 
+db_password =
+db_port = 
+
+[IAM_ROLE]
+arn = 
+
+[S3]
+crime_data = 
+county_census_data = 
+temperature_data = 
+liquor_sales_data = 
+
+log_data = 
+log_jsonpath = 
+song_data = 
+
+[AWS]
+key = 
+secret = 
+
