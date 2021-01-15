@@ -261,9 +261,7 @@ copy_from_s3_to_staging_temperature_table = ("""
     from {}
     region 'us-west-2'
     iam_role '{}'
-    compupdate off statupdate off
-    format as csv
-    ignoreheader 1 
+    json 'auto'
 """).format(S3_TEMPERATURE_DATA , DWH_IAM_ROLE_ARN)
 
 copy_from_s3_to_staging_liquor_sales_table = ("""
