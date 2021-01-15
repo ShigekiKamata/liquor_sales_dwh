@@ -11,14 +11,20 @@ stores them in Amazon S3, transforms the data, and loads the data to an Amazon R
 
 ## Datasets to Combine
 
-- [Iowa Liquor Sales](https://www.kaggle.com/residentmario/iowa-liquor-sales)
-contains over 12 million records of liquor sales in Iowa from 2012 through 2017 
-- [Daily Temperature of Major Cities](https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities)
-contains temperature data of major cities in the world, which includes two major cities in Iowa; Des Moines and Sioux City 
-- [US Census Demographic Data](https://www.kaggle.com/muonneutrino/us-census-demographic-data) contains census data such as total population,
-population percentage by sex, race, and age, unemployment rate etc.
-- [United States crime rates by county](https://www.kaggle.com/mikejohnsonjr/united-states-crime-rates-by-county) contain data regarding crimes by US county. We will use crime rate per 1000,000 data. 
+- [**Iowa Liquor Sales:**](https://www.kaggle.com/residentmario/iowa-liquor-sales)
+	- contains over 12 million records of liquor sales in Iowa from 2012 through 2017 
+	- format: csv 
+- [**Daily Temperature of Major Cities:**](https://www.kaggle.com/sudalairajkumar/daily-temperature-of-major-cities)
+	- contains temperature data of major cities in the world, which includes two major cities in Iowa; Des Moines and Sioux City 
+	- format: json (This file was originally csv but converted to json for the sake of project requirement)
+- [**US Census Demographic Data:**](https://www.kaggle.com/muonneutrino/us-census-demographic-data) 
+	- contains census data such as total population,population percentage by sex, race, and age, unemployment rate etc.
+	-- format: csv
+- [**United States crime rates by county:**](https://www.kaggle.com/mikejohnsonjr/united-states-crime-rates-by-county) 
+	- contain data regarding crimes by US county. We will use crime rate per 1000,000 data. 
+	- -format: csv
 
+	
 ## Technical Overview
 This project uses the following technologies.
 - Python
