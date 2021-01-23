@@ -1,6 +1,3 @@
-# Instructions
-# Define a function that uses the python logger to log a function. Then finish filling in the details of the DAG down below. Once you’ve done that, run "/opt/airflow/start.sh" command to start the web server. Once the Airflow web server is ready,  open the Airflow UI using the "Access Airflow" button. Turn your DAG “On”, and then Run your DAG. If you get stuck, you can take a look at the solution file or the video walkthrough on the next page.
-
 import datetime
 import logging
 
@@ -14,12 +11,18 @@ import sql_queries as sq
 
     
 def load_data_to_redshift(*args, **kwargs):
+    '''
+    Loads data from S3 to Redshift
+    '''
     aws_hook = AwsHook("aws_credentials")
     credentials = aws_hook.get_credentials()
     redshift_hook = PostgresHook("redshift")
     redshift_hook.run(sq.load_data_from_S3.format(kwargs['table_name'], kwargs['s3_url']))
 
 def check_tables(*args, **kwargs):
+    '''
+    Runs simple queries to check the tables are properly populated
+    '''
     table_name = kwargs['table_name']
     redshift_hook = PostgresHook("redshift")
     #Count rows
@@ -41,12 +44,13 @@ def check_tables(*args, **kwargs):
         logging.info(rec)
 
     
-    
+# Define a DAG object     
 dag = DAG(
         'etl_process',
         start_date=datetime.datetime.now())
 
-#Tasks
+#------------------------------------------------------------------------------------------------------
+# Define tasks 
 
 create_tables_task = PostgresOperator(
     task_id="create_tables",
@@ -210,6 +214,7 @@ check_insert_time_dim_task = PythonOperator(
 
 end = DummyOperator(task_id='end',  dag=dag)
 
+# Define DAG dependencies
 
 load_data_tasks = [load_liquor_data_task,
                    load_census_data_task, 

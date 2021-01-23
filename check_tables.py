@@ -27,12 +27,15 @@ def check_tables(cur, conn):
 
 def main():
     
+    # Read config data
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
     
+    # Establish connection
     conn = psycopg2.connect("host={} dbname={} user={} password={} port={}".format(*config['CLUSTER'].values()))
     cur = conn.cursor()
     
+    # Check tables
     print('Checking the data...')
     check_tables(cur, conn)
     print('Checking complete')

@@ -22,13 +22,18 @@ def create_tables(cur, conn):
 
 
 def main():
+
+    # Read credentials from config file 
     config = configparser.ConfigParser()
     config.read('dwh.cfg')
 
+    # Establish Connection
     conn = psycopg2.connect("host={} dbname={} user={} password={} port={}".format(*config['CLUSTER'].values()))
     cur = conn.cursor()
 
+    # Drop tables 
     drop_tables(cur, conn)
+    # Create tables
     create_tables(cur, conn)
 
     conn.close()

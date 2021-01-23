@@ -1,5 +1,8 @@
 import configparser, os
 
+'''
+This file contains all the SQL statements used in this project.
+'''
 
 # CONFIG
 config = configparser.ConfigParser()
