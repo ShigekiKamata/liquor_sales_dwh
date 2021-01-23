@@ -28,25 +28,25 @@ stores them in Amazon S3, transforms the data, and loads the data to an Amazon R
 ## Data Models, Tools and Technologies
 
 ### Data Model
-According to [the exploratory data analysis], we found that we can access deeper and more detailed information by connecting the Iowa Liquor Sales dataset with other datasets. We want to construct a data warehouse with the liquor sales data with the other four data connected to it.
+According to [the exploratory data analysis](eda.ipynb), we found that we can access deeper and more detailed information by connecting the Iowa Liquor Sales dataset with other datasets. We want to construct a data warehouse with the liquor sales data with the other four data connected to it.
 Each of those datasets has some link to the Iowa Liquor Sales dataset. For examle, the liquor data and the census data have `County` column in common, so we can join these datasets together using the column. Hence, in order to create one database that can add several different perspectives to the Iowa Liquor Sales dataset, we should use a **star-schema** with the liquor dataset as fact table and the other datasets as dimension tables.
 
-### Tools and Technologies:
+### Tools and Technologies
 In order to achieve the goal above, we will utilize the follwing tools and technologies:
 
-#### Amazon Redshift
-Amazon Redshift is a data warehouse service on cloud, which is high performant and highly scalable.  
-With Amazon Redshift, we can make our data accessible to the analysis using BI tools.
+- Amazon Redshift
+	Amazon Redshift is a data warehouse service on cloud, which is high performant and highly scalable.  
+	With Amazon Redshift, we can make our data accessible to the analysis using BI tools.
 
-#### Amazon S3
-Amazon S3 is an object storage service provided in AWS. We store all the datasets used in this project in S3. This way, we don't have to 
-store the data files, which could be 1TB in size, in local computer. Also, the compatibility between S3 and Redshift makes the ETL process easy.   
+- Amazon S3
+	Amazon S3 is an object storage service provided in AWS. We store all the datasets used in this project in S3. This way, we don't have to 
+	store the data files, which could be 1TB in size, in local computer. Also, the compatibility between S3 and Redshift makes the ETL process easy.   
 
-#### Apache Airflow
-Apache Airflow is a workflow management platform. Since our ETL pipeline will load data from four different sources and insert six tables, we have so many tasks to manage. We need to know which task is functioning well and which is not. We also need to pararellize some of the tasks. Airflow can take care of those issues well.  
+- Apache Airflow
+	Apache Airflow is a workflow management platform. Since our ETL pipeline will load data from four different sources and insert six tables, we have so many tasks to manage. We need to know which task is functioning well and which is not. We also need to pararellize some of the tasks. Airflow can take care of those issues well.  
 
-#### Apache Spark
-Apache Spark is a distributed cluster-computing framework. Spark makes it possible to analyse and manipulate data that are too big to process on a local computer. We will use Apache Spark for an exploratory data analysis.  
+- Apache Spark
+	Apache Spark is a distributed cluster-computing framework. Spark makes it possible to analyse and manipulate data that are too big to process on a local computer. We will use Apache Spark for an exploratory data analysis.  
 
 ## Usage
 This project can be executed on either Apache Airflow or Python script basis, 
