@@ -34,19 +34,18 @@ Each of those datasets has some link to the Iowa Liquor Sales dataset. For examl
 ### Tools and Technologies
 In order to achieve the goal above, we will utilize the follwing tools and technologies:
 
-- Amazon Redshift
-	Amazon Redshift is a data warehouse service on cloud, which is high performant and highly scalable.  
-	With Amazon Redshift, we can make our data accessible to the analysis using BI tools.
+- **Amazon Redshift**
+	is a data warehouse service on cloud, which is high performant and highly scalable. With Amazon Redshift, we can make our data accessible to the analysis using BI tools.
 
-- Amazon S3
-	Amazon S3 is an object storage service provided in AWS. We store all the datasets used in this project in S3. This way, we don't have to 
+- **Amazon S3**
+	is an object storage service provided in AWS. We store all the datasets used in this project in S3. This way, we don't have to 
 	store the data files, which could be 1TB in size, in local computer. Also, the compatibility between S3 and Redshift makes the ETL process easy.   
 
-- Apache Airflow
-	Apache Airflow is a workflow management platform. Since our ETL pipeline will load data from four different sources and insert six tables, we have so many tasks to manage. We need to know which task is functioning well and which is not. We also need to pararellize some of the tasks. Airflow can take care of those issues well.  
+- **Apache Airflow**
+	is a workflow management platform. Since our ETL pipeline will load data from four different sources and insert six tables, we have so many tasks to manage. We need to know which task is functioning well and which is not. We also need to pararellize some of the tasks. Airflow can take care of those issues well.  
 
-- Apache Spark
-	Apache Spark is a distributed cluster-computing framework. Spark makes it possible to analyse and manipulate data that are too big to process on a local computer. We will use Apache Spark for an exploratory data analysis.  
+- **Apache Spark**
+	is a distributed cluster-computing framework. Spark makes it possible to analyse and manipulate data that are too big to process on a local computer. We will use Apache Spark for an exploratory data analysis.  
 
 ## Usage
 This project can be executed on either Apache Airflow or Python script basis, 
